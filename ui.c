@@ -34,21 +34,27 @@ static void ui_line(char c, int n) {
     printf("\n");
 }
 
-static void ui_menu_options(const char *opt[], int n) {
+static void ui_menu_options(const char *opt[], const char *desc[], int n) {
     for (int i = 0; i < n ; ++i) {
-        printf("Command> %s\n", opt[i]);
+        printf("%-8s\t|\t%s\n", opt[i], desc[i]);
     }
 }
 
 static void ui_menu() {
-    const char *menu_list[] = {
+    const char *cmd_list[] = {
             "help",
             "exit | stop",
-            "clear | cls\n",
+            "clear | cls",
             "new",
 
     };
-    ui_menu_options(menu_list, sizeof (menu_list) / sizeof (char *));
+    const char *cmd_desc[] = {
+            "Prints this help",
+            "Stops the program",
+            "Clears the console",
+            "Creates a new todo - NOT IMPLEMENTED"
+    };
+    ui_menu_options(cmd_list, cmd_desc, sizeof (cmd_list) / sizeof (char *));
     ui_line('-', MENU_WIDTH);
 }
 
